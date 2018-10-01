@@ -1,3 +1,6 @@
+let owner = process.argv[2];
+let repo = process.argv[3];
+
 var token = require('./token');
 var request = require('request');
 var fs = require('fs');
@@ -31,7 +34,8 @@ function getRepoContributors(repoOwner, repoName, cb) {
   });
 }
 
-getRepoContributors("jquery", "jquery", function(err, result) {
+if (!owner || !repo) throw "Please provide arguments".
+getRepoContributors(owner, repo, function(err, result) {
   if (err) throw err
   let results = JSON.parse(result);
 	for (let result of results) {
